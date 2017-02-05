@@ -75,7 +75,7 @@ gamma = 0.3
 x0 = 0.01
 y0 = 0.01
 map1 = dynamic_iter(F, rho, gamma, x0, y0, t_max)
-## if the distance of two points are more than epsilon, 
+## if the distance of two points is more than epsilon, 
 ## we consider it divergence
 epsilon = 0.05
 iteration = 80

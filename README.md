@@ -23,14 +23,14 @@ It draws the plots required for section 6.
 
 * First part
 
-    $cd 7-Bifurcations
-    $python code.py 0.5 1.4 0.0005
+        $cd 7-Bifurcations
+        $python code.py 0.5 1.4 0.0005
 
 It draws the plot required for the first part of this section. It takes 3 arguments: rho ranges and interval.
 
 * Second part
 
-    $cd 7-Bifurcations
-    $python code.py 0.9 1.1 0.0005
+        $cd 7-Bifurcations
+        $python code.py 0.9 1.1 0.0005
 
 It draws the plot required for the second part of this section which is a zoomed version of the plot in the first part.

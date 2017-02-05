@@ -9,8 +9,12 @@ def F(x, y, rho, gamma):
     return [xd, yd]
 
 def plot_t_xy(t_axis, x_axis, y_axis):
+    fig = plt.figure()
+    ax = fig.add_subplot(111)
     plt.plot(t_axis, x_axis)
     plt.plot(t_axis, y_axis, linestyle=':', linewidth=3)
+    ax.set_xlabel('t')
+    ax.set_ylabel('x,y')
     plt.show()
 
 def dynamic_iter(F, rho, gamma, x0, y0, t_max):

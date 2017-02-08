@@ -1,6 +1,6 @@
 ## How to run:
-## First part: python code.py 0.5 1.4 0.0005
-## Second part: python code.py 0.9 1.1 0.0005
+## First part: python code.py 0.5 1.4 0.001
+## Second part: python code.py 0.9 1.1 0.001
 
 import numpy as np
 import matplotlib.pyplot as plt
@@ -18,8 +18,8 @@ def F(x, y, rho, gamma):
 def init_plot():
     fig = plt.figure()
     ax = fig.add_subplot(111)
-    ax.set_xlabel("rho")
-    ax.set_ylabel("x")
+    ax.set_xlabel(r'$\rho$', fontsize=24)
+    ax.set_ylabel('$x$', fontsize=24)
 
 ## it iterates and computes the next points
 ## it returns the result in arr
@@ -35,6 +35,7 @@ def dynamic_iter(F, rho, gamma, x0, y0, t_max):
 
 
 ## 7. Bifurcations
+plt.rcParams.update({'font.size': 16})
 
 t_max = 500
 rho = float(sys.argv[1])

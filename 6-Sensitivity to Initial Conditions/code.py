@@ -10,16 +10,18 @@ def F(x, y, rho, gamma):
 
 
 ## plot 2D plots t vs x and t vs y
-def plot_t_2x(t_axis, x1_axis, x2_axis, x3_axis, x4_axis):
+def plot_t_2x(t_axis, x1_axis, x2_axis, x3_axis, x4_axis, label1, label2):
     fig, axarr = plt.subplots(2, sharex=True)
-    axarr[0].plot(t_axis, x1_axis)
-    axarr[0].plot(t_axis, x2_axis)
-    axarr[0].set_ylabel('x')
-    axarr[0].set_xlabel('t')
-    axarr[1].plot(t_axis, x3_axis)
-    axarr[1].plot(t_axis, x4_axis)
-    axarr[1].set_ylabel('y')
-    axarr[1].set_xlabel('t')
+    axarr[0].plot(t_axis, x1_axis, label=label1)
+    axarr[0].plot(t_axis, x2_axis, "--", label=label2)
+    axarr[0].set_ylabel('$x$', fontsize=24)
+    axarr[0].set_xlabel('$t$', fontsize=24)
+    axarr[0].legend(loc='upper right')
+    axarr[1].plot(t_axis, x3_axis, label=label1)
+    axarr[1].plot(t_axis, x4_axis, "--", label=label2)
+    axarr[1].set_ylabel('$y$', fontsize=24)
+    axarr[1].set_xlabel('$t$', fontsize=24)
+    axarr[1].legend(loc='upper right')
     plt.show()
     
 
@@ -51,20 +53,20 @@ def distance(x1, y1, x2, y2):
 
 
 ## 6. Sensitivity to Initial Conditions
-
+plt.rcParams.update({'font.size': 16})
 ## First part
 
-t_max = 100
+t_max = 200
 rho = 1.29
 gamma = 0.3
 x0 = 0.4
 y0 = 0.4
 map1 = dynamic_iter(F, rho, gamma, x0, y0, t_max)
-x0 = 0.44
+x0 = 0.4001
 y0 = 0.4
 map2 = dynamic_iter(F, rho, gamma, x0, y0, t_max)
 ## plot the result
-plot_t_2x(np.arange(t_max), map1[:,0], map2[:,0], map1[:,1], map2[:,1])
+plot_t_2x(np.arange(t_max), map1[:,0], map2[:,0], map1[:,1], map2[:,1], "x0 = 0.4, y0=0.4", "x0 = 0.4001, y0=0.4")
 
 
 ## Second part

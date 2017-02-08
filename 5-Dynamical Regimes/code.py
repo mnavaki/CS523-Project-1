@@ -8,13 +8,14 @@ def F(x, y, rho, gamma):
     yd = x
     return [xd, yd]
 
-def plot_t_xy(t_axis, x_axis, y_axis):
+def plot_t_xy(t_axis, x_axis, y_axis, label1, label2):
     fig = plt.figure()
     ax = fig.add_subplot(111)
-    plt.plot(t_axis, x_axis)
-    plt.plot(t_axis, y_axis, linestyle=':', linewidth=3)
-    ax.set_xlabel('t')
-    ax.set_ylabel('x,y')
+    plt.plot(t_axis, x_axis, linewidth=2, label=label1)
+    plt.plot(t_axis, y_axis, linestyle='--', linewidth=3, label=label2)
+    ax.set_xlabel('$t$', fontsize=24)
+    ax.set_ylabel('$x$,$y$', fontsize=24)
+    ax.legend(loc='upper right')
     plt.show()
 
 def dynamic_iter(F, rho, gamma, x0, y0, t_max):
@@ -27,6 +28,7 @@ def dynamic_iter(F, rho, gamma, x0, y0, t_max):
         y0 = yd
     return arr
 
+plt.rcParams.update({'font.size': 16})
 x0 = 1
 y0 = 1
 ## fixed point
@@ -34,18 +36,18 @@ rho = 0.1
 gamma = 0.2
 t_max = 100
 arr = dynamic_iter(F, rho, gamma, x0, y0, t_max)
-plot_t_xy(np.arange(t_max), arr[:,0], arr[:,1])
+plot_t_xy(np.arange(t_max), arr[:,0], arr[:,1], "x" , "y")
 
 ## limit cycle
 rho = 0.5
 gamma = 0.2
 arr = dynamic_iter(F, rho, gamma, x0, y0, t_max)
-plot_t_xy(np.arange(t_max), arr[:,0], arr[:,1])
+plot_t_xy(np.arange(t_max), arr[:,0], arr[:,1], "x" , "y")
 
 ## complex
-t_max = 5000
+t_max = 3000
 arr = dynamic_iter(F, rho, gamma, x0, y0, t_max)
-plot_t_xy(np.arange(t_max), arr[:,0], arr[:,1])
+plot_t_xy(np.arange(t_max), arr[:,0], arr[:,1], "x" , "y")
 
 
 

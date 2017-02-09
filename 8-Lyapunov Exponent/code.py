@@ -7,6 +7,8 @@ import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 import math
 import sys
+import numpy as NP
+from scipy import linalg as LA
 
 
 def F(x, y, rho, gamma):
@@ -67,35 +69,55 @@ def lyapunov2d(F, F_Jacobian, t_max, rng, param1, param2, x0, y0):
 
 max_time= 50
 rho = 0.4
-gamma = 0.3
+gamma = 0.4
 # Initial values for x and y
-x0 = 0.4
-y0 = 0.2
-# Calculate the Lyapunov exponents
+x_attractor = np.sqrt(rho)
+y_attractor = 0
+x0 = x_attractor
+y0 = y_attractor
+
+# Calculate the Lyapunov exponents for first attractor
 rng = np.arange(0,1.5,0.001)
-Lyapunov_exponents = lyapunov2d(F, F_Jacobian, max_time, rng, rho, gamma, x0, y0)
+Lyapunov_exponents = lyapunov2d(F, F_Jacobian, max_time, rng, gamma, rho, x0, y0)
 
 plt.rcParams.update({'font.size': 16})
 fig = plt.figure()
 ax = fig.add_subplot(111)
-ax.set_xlabel(r'$\rho$', fontsize=24)
+ax.set_xlabel(r'$\gamma$', fontsize=24)
 ax.set_ylabel("Lyapunov exponent", fontsize=18)
 ax.axhline(y=0,xmin=0,xmax=3,c="black",linewidth=2,zorder=0)
 plt.plot(rng, Lyapunov_exponents)
 plt.show()
 
-## second part
+# Calculate the Lyapunov exponents for second attractor
+x_attractor = -1*np.sqrt(rho)
+y_attractor = 0
+x0 = x_attractor
+y0 = y_attractor
+Lyapunov_exponents = lyapunov2d(F, F_Jacobian, max_time, rng, gamma, rho, x0, y0)
 
-max_time= 50
-rho = 0.2
-gamma = 0.4
+plt.rcParams.update({'font.size': 16})
+fig = plt.figure()
+ax = fig.add_subplot(111)
+ax.set_xlabel(r'$\gamma$', fontsize=24)
+ax.set_ylabel("Lyapunov exponent", fontsize=18)
+ax.axhline(y=0,xmin=0,xmax=3,c="black",linewidth=2,zorder=0)
+plt.plot(rng, Lyapunov_exponents)
+plt.show()
+
+
+max_time= 100
+rho = 0.4
+gamma = 0.3
 # Initial values for x and y
-x0 = 0.5
-y0 = 0.5
+x_attractor = np.sqrt(rho)
+y_attractor = 0
+x0 = 0
+y0 = 0
 
 dic = {}
-gamma_range =  np.arange(0.1,1.5,0.001)
-rho_range = np.arange(0,1.5,0.001)
+gamma_range =  np.arange(0.1,1.5,0.01)
+rho_range = np.arange(0,1.5,0.01)
 
 max_l = np.empty([len(gamma_range)*len(rho_range), 1], dtype=float)
 rho_gamma_values = []
@@ -108,15 +130,30 @@ for gamma in gamma_range:
     l_tmp = Lyapunov_exponents
     l_tmp = l_tmp[~np.isnan(l_tmp)] ## removing nan
     l_tmp = l_tmp[~np.isinf(l_tmp)] ## removing inf
-    max_l[i] = sorted(list(l_tmp))[-1] ## find max value
-    itemindex = np.where(Lyapunov_exponents==max_l[i]) ## find max value's index
-    rho_gamma_values.append("rho = " + str(rho_range[itemindex[0]]) + ",gamma =" + str(gamma))
+    if len(l_tmp) == 0:
+        max_l[i] = -1000
+        rho_gamma_values.append("NA")
+    else:
+        max_l[i] = sorted(list(l_tmp))[-1] ## find max value
+        itemindex = np.where(Lyapunov_exponents==max_l[i]) ## find max value's index
+        rho_gamma_values.append("rho = " + str(rho_range[itemindex[0]]) + ",gamma =" + str(gamma))
     i += 1
 
 general_max_l = max(max_l)
 itemindex = np.where(max_l==general_max_l) ## find max value's index
 print "maximum exponent: ", general_max_l
 print rho_gamma_values[itemindex[0]]
+
+
+## Compute eigenvalues
+print "Computing eigenvalues..."
+gamma = 1
+x0=1
+y0=1
+J = F_Jacobian(x0, gamma)
+e_vals, e_vecs = LA.eig(J)
+print "eigenvalues: ", e_vals
+
 
 
 

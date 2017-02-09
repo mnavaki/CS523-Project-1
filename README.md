@@ -42,3 +42,9 @@ It draws the plot required for the second part of this section which is a zoomed
 
 It plots the Lyaponuv exponent diagram. Also it computes the values of rho and gamma that produces the largest exponent.
 
+### Strange Attractors
+
+    $cd 9-Strange\ Attractors
+    $python code.py
+
+It plots the strange attractor in this system.

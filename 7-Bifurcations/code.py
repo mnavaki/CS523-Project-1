@@ -34,19 +34,20 @@ def dynamic_iter(F, rho, gamma, x0, y0, t_max):
     return arr
 
 
-## 7. Bifurcations
+## 7. Bifurcations x0=-0.1, y0=0.9
 plt.rcParams.update({'font.size': 16})
 
-t_max = 500
+t_max = 400
 rho = float(sys.argv[1])
 gamma = 0.3
+
 x0 = -0.1
 y0 = 0.9
 init_plot()
 while rho < float(sys.argv[2]):
     map1 = dynamic_iter(F, rho, gamma, x0, y0, t_max)
     rho_arr = np.full((len(map1[:,0]), 1), rho)
-    plt.scatter(rho_arr, map1[:,0])
+    plt.scatter(rho_arr, map1[:,0], color='blue', s=0.5)
     rho += float(sys.argv[3])
 
 plt.show()

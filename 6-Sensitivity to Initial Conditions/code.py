@@ -71,22 +71,22 @@ plot_t_2x(np.arange(t_max), map1[:,0], map2[:,0], map1[:,1], map2[:,1], "x0 = 0.
 
 ## Second part
 
-t_max = 100
-rho = 1.29
+t_max = 1000
+rho = 0.5
 gamma = 0.3
-x0 = 0.01
-y0 = 0.01
+x0 = 0
+y0 = 0
 map1 = dynamic_iter(F, rho, gamma, x0, y0, t_max)
 ## if the distance of two points is more than epsilon, 
 ## we consider it divergence
 epsilon = 0.05
-iteration = 80
+iteration = 10
 x1 = x0
 y1 = y0
 res = np.zeros([iteration, 2])
 for i in range(iteration):
-    x1 += 0.01
-    y1 += 0.01
+    x1 += 0.1
+    y1 += 0.1
     dis = distance(x0, y0, x1, y1)
     map2 = dynamic_iter(F, rho, gamma, x1, y1, t_max)
     count = 0 ## number of iterations that trajectories are not divergent

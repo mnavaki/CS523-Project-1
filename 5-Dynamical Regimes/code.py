@@ -1,5 +1,8 @@
+from __future__ import division
 import numpy as np
 import matplotlib.pyplot as plt
+import math
+
 
 ## 5. Dynamical Regimes
 
@@ -29,25 +32,31 @@ def dynamic_iter(F, rho, gamma, x0, y0, t_max):
     return arr
 
 plt.rcParams.update({'font.size': 16})
-x0 = 1
-y0 = 1
-## fixed point
-rho = 0.1
+
+## fixed point: rho = 0.4, gamma = 0.2, x0 = 0, y0 = 0
+rho = 0.4
 gamma = 0.2
+x0 = 0
+y0 = 0
 t_max = 100
 arr = dynamic_iter(F, rho, gamma, x0, y0, t_max)
 plot_t_xy(np.arange(t_max), arr[:,0], arr[:,1], "x" , "y")
 
-## limit cycle
+## limit cycle: rho = 0.5, gamma = 0.2, x0 = 0, y0 = 0
 rho = 0.5
 gamma = 0.2
 arr = dynamic_iter(F, rho, gamma, x0, y0, t_max)
 plot_t_xy(np.arange(t_max), arr[:,0], arr[:,1], "x" , "y")
 
-## complex
-t_max = 3000
+## complex: rho = 1.4, gamma = 0.3, x0 = 0, y0 = 0
+rho = 1.4
+gamma = 0.3
+t_max = 6000
 arr = dynamic_iter(F, rho, gamma, x0, y0, t_max)
-plot_t_xy(np.arange(t_max), arr[:,0], arr[:,1], "x" , "y")
+plot_t_xy(np.arange(t_max), arr[:,0], arr[:,1], "x", "y")
+## zoomed in plot
+plot_t_xy(np.arange(t_max)[5000:5300], arr[5000:5300,0], arr[5000:5300,1], "x", "y")
+
 
 
 

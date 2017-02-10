@@ -11,6 +11,7 @@ def F(x, y, rho, gamma):
     yd = x
     return [xd, yd]
 
+## plot t vs x,y
 def plot_t_xy(t_axis, x_axis, y_axis, label1, label2):
     fig = plt.figure()
     ax = fig.add_subplot(111)
@@ -30,21 +31,6 @@ def dynamic_iter(F, rho, gamma, x0, y0, t_max):
         x0 = xd
         y0 = yd
     return arr
-
-## plot 2D plots t vs x and t vs y
-def plot_t_4x(t_axis, x1_axis, x2_axis, x3_axis, x4_axis, label1, label2):
-    fig, axarr = plt.subplots(2, sharex=True)
-    axarr[0].plot(t_axis, x1_axis, label=label1)
-    axarr[0].plot(t_axis, x2_axis, "--", label=label2)
-    axarr[0].set_ylabel('$x$', fontsize=24)
-    axarr[0].set_xlabel('$t$', fontsize=24)
-    axarr[0].legend(loc='upper right')
-    axarr[1].plot(t_axis, x3_axis, label=label1)
-    axarr[1].plot(t_axis, x4_axis, "--", label=label2)
-    axarr[1].set_ylabel('$y$', fontsize=24)
-    axarr[1].set_xlabel('$t$', fontsize=24)
-    axarr[1].legend(loc='upper right')
-    plt.show()
 
 plt.rcParams.update({'font.size': 16})
 

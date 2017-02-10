@@ -50,9 +50,18 @@ def plot_xyz(x_axis, y_axis, z_axis, label1, label2, label3):
 plt.rcParams.update({'font.size': 16})
 
 ### strange attractor 1: t_max = 100000, alpha = 0.0001, betta = 0.0001, gamma = 1.1, x0 = 0.5,y0 = 0.5,z0 = 0.5
+t_max = 100000
+alpha = 0.0001
+betta = 0.0001
+gamma = 1.1
+
+x0 = 0.5
+y0 = 0.5
+z0 = 0.5
+map1 = dynamic_iter(F, alpha, betta, gamma, x0, y0, z0, t_max)
+plot_xyz(map1[:,0], map1[:,1], map1[:,2], "x", "y", "z")
+
 ### strange attractor 2: t_max = 100000, alpha = 0.0001, betta = -0.0001, gamma = 1.1, x0 = 0.6, y0 = 0.6, z0 = 0.1
-
-
 t_max = 100000
 alpha = 0.0001
 betta = -0.0001
@@ -64,8 +73,5 @@ z0 = 0.1
 map1 = dynamic_iter(F, alpha, betta, gamma, x0, y0, z0, t_max)
 plot_xyz(map1[:,0], map1[:,1], map1[:,2], "x", "y", "z")
 
-
-
- 
  
 

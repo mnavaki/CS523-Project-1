@@ -123,6 +123,7 @@ max_l = np.empty([len(gamma_range)*len(rho_range), 1], dtype=float)
 rho_gamma_values = []
 i = 0
 print "identifying the values of rho and gamma that produces the largest exponent..."
+## iterate over gamma
 for gamma in gamma_range:
 
     # Calculate the Lyapunov exponents

@@ -58,6 +58,7 @@ z0 = 0.2
 t_max = 2000
 arr = dynamic_iter(F, alpha, betta, gamma, x0, y0, z0, t_max)
 plot_t_xyz(np.arange(t_max), arr[:,0], arr[:,1], arr[:,2], "x" , "y", "z")
+## plot fixed point
 plot_xyz(arr[:,0], arr[:,1], arr[:,2], "$x$" , "$y$", "$z$")
 
 ## limit cycle: alpha = 0.0001, betta = 0.0001, gamma = 0.7, x0 = 0.2, y0 = 0.2, z0 = 0.2, t_max = 100

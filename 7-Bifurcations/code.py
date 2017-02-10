@@ -44,6 +44,7 @@ gamma = 0.3
 x0 = -0.1
 y0 = 0.9
 init_plot()
+## iterate over rho
 while rho < float(sys.argv[2]):
     map1 = dynamic_iter(F, rho, gamma, x0, y0, t_max)
     rho_arr = np.full((len(map1[:,0]), 1), rho)

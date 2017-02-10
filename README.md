@@ -4,6 +4,12 @@
 Group G3
 
 ## How to run
+To generate all plots use the following commands:
+
+    $chmod +x generate-plots.sh
+    $./generate-plots.sh
+
+It prints out what plot currently is showing.
 
 ### Dynamical Regimes
 

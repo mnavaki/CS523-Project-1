@@ -34,7 +34,7 @@ plt.rcParams.update({'font.size': 16})
 ## strange attractor: rho = 1.2, gamma = 0.4, x0=0, y0=0, t_max=100000
 rho = 1.2
 gamma = 0.4
-x0 = 0
+x0 = 1.1
 y0 = 0
 t_max = 100000
 arr = dynamic_iter(F, rho, gamma, x0, y0, t_max)

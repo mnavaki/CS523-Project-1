@@ -1,9 +1,5 @@
 #!/bin/bash
 
-echo "hello, $USER. I wish to list some files of yours"
-echo "listing files in the current directory, $PWD"
-ls  # list files
-
 echo "plotting figures related to part I ..."
 echo "plotting Fig. 1a - 1d: Dynamical Regimes ..."
 cd 5-Dynamical\ Regimes
